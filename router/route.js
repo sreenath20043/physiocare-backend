@@ -47,6 +47,9 @@ router.post('/api/doctor-booking',jwtMiddleware,bookingController.doctorBooking)
 //get all doctorbooking
 router.get('/api/doctorbooking',jwtMiddleware,bookingController.getAllBooking)
 
+//get all bookings for admin
+router.get('/api/admin/all-bookings',adminJwtMiddleware,bookingController.getAllBookingsForAdmin)
+
 //cancel booking
 router.delete('/api/cancel-booking/:bookingId',bookingController.cancelBooking)
 

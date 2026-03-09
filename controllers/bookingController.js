@@ -99,6 +99,20 @@ exports.getAllBooking = async (req, res) => {
   }
 };
 
+// Get all bookings for admin
+exports.getAllBookingsForAdmin = async (req, res) => {
+  try {
+    const bookings = await Booking.find({})
+      .populate("userId")
+      .populate("doctorId");
+    console.log(`Found ${bookings.length} total bookings for admin`);
+    res.status(200).json(bookings);
+  } catch (err) {
+    console.error("Error getting all bookings for admin:", err);
+    res.status(500).json({ message: "Error fetching all bookings", error: err.message });
+  }
+};
+
 // GET DOCTOR BOOKINGS
 exports.getDoctorBookings = async (req, res) => {
   try {
