@@ -1,7 +1,23 @@
  const Booking = require('../models/bookingModal')
 const Stripe = require("stripe");
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+// Initialize Stripe with proper error handling
+let stripe;
+try {
+  stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
+} catch (error) {
+  console.error("Stripe initialization failed:", error.message);
+  // Create a dummy stripe object for development if no key is provided
+  stripe = {
+    checkout: {
+      sessions: {
+        create: async () => {
+          throw new Error("Stripe is not configured. Please set STRIPE_SECRET_KEY environment variable.");
+        }
+      }
+    }
+  };
+}
 
 //  exports.doctorBooking = async(req,res)=>{
 //     console.log("Inside booking doctor");
