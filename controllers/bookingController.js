@@ -7,7 +7,6 @@ try {
   stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 } catch (error) {
   console.error("Stripe initialization failed:", error.message);
-  // Create a dummy stripe object for development if no key is provided
   stripe = {
     checkout: {
       sessions: {
@@ -18,42 +17,6 @@ try {
     }
   };
 }
-
-//  exports.doctorBooking = async(req,res)=>{
-//     console.log("Inside booking doctor");
-//     console.log(req.body);
-
-//     const {username,email,number,session,date,time,description,status} = req.body
-
-//     const bookingData = {
-//         username,
-//         email,
-//         number,
-//         session,
-//         date,
-//         time,
-//         description,
-//         status
-//     }
-
-//     console.log('Booking data to save:', bookingData);
-
-//     try{
-//         const existingBooking = await Booking.findOne({ email, date, time });
-//         if(existingBooking){
-           
-//             res.status(401).json({message:"You already booked"})
-//         }else{
-//             const newBooking = new Booking(bookingData)
-//             await newBooking.save()
-//             res.status(201).json({message:"Doctor booking Successfully",newBooking})
-//         }
-//     }catch(err){
-//         console.log('Error:', err);
-//         res.status(500).json({err})
-//     }
-//  }
-
 
 
 
