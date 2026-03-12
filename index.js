@@ -28,7 +28,9 @@ physiocareServer.use('/uploads',express.static('./uploads'))
 //3 port define
 const PORT = process.env.PORT || 3000
 
-//4 server start
+//4 server start 
 physiocareServer.listen(PORT,()=>{
     console.log(`Physiocare server started on port ${PORT}`)
 })
+
+////
