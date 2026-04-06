@@ -6,6 +6,8 @@ require('./config/db')
 
 //7 import cors
 const cors = require('cors')
+const dotenv = require('dotenv')
+dotenv.config()
 
 //8 import routes
 const router = require('./router/route')
